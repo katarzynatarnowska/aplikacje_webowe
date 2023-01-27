@@ -1,13 +1,12 @@
 package com.restaurant.service;
 
 import com.restaurant.model.User;
-import com.restaurant.web.dto.UserRegistrationDto;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-//import org.springframework.boot.autoconfigure.security.servlet.UserDetailsService;
+
+import java.util.List;
+
 
 public interface UserService {
-    User save (UserRegistrationDto registrationDto);
+    public void saveUser(User user);
+    public List<Object> isUserPresent(User user);
 
-    UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
 }

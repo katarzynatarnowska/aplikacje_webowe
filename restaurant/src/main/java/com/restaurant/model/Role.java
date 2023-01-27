@@ -1,40 +1,16 @@
 package com.restaurant.model;
 
-import jakarta.persistence.Id;
-import jakarta.persistence.*;
+public enum Role {
+    USER("User"),
+    ADMIN("Admin");
 
-@Entity
-@Table(name="role")
+    private final String value;
 
-public class Role {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
-
-    public Role(String name) {
-        super();
-        this.name = name;
+    private Role(String value) {
+        this.value = value;
     }
 
-    public Role() {
-
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public String getValue() {
+        return value;
     }
 }

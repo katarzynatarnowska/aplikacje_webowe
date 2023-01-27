@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>RestaurantPage</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+<h2>Welcome to Homepage</h2>
+<p sec:authorize="hasRole('ROLE_ANONYMOUS')">Text visible to anonymous.</p>
+<p sec:authorize="hasRole('USER')">Text visible to user.</p>
+<p sec:authorize="hasRole('ADMIN')">Text visible to admin.</p>
+<p sec:authorize="isAuthenticated()">Text visible only to authenticated users.</p>
+
+<div sec:authorize="hasRole('ROLE_ANONYMOUS')">
+    <p><a th:href="@{|/login|}" th:text="'Log in'"></a></p>
+    <p><a th:href="@{|/register|}" th:text="'Register'"></a></p>
+</div>
+
+<header class="header">
+    <a href="#" class="logo">
+
+        <img src="images/logo.png" alt="">
+    </a>
+
+    <nav class="navbar">
+        <a href="#">home</a>
+        <a href="#about">about</a>
+        <a href="#menu">menu</a>
+        <a href="#contact">contact</a>
+
+    </nav>
+    <div class="icons">
+        <a href="/login"><div class="fas fa-user" id="user-btn"> </div></a>
+
+    </div>
+
+    <div class="search-form">
+        <input type="search" id="search-box" placeholder="search here...">
+        <label for="search-box" class="fas fa-search"></label>
+    </div>
+</header>
+
+<section class="home" id="home">
+    <div class="content">
+<!--        <h3>Włoska kuchnia w centrum śląska</h3>-->
+<!--        <p>jakiś tekst</p>-->
+<!--        <a href="#" class="btn">get yours now</a>-->
+
+    </div>
+</section>
+
+<section class="about" id="about">
+
+    <h1 class="heading"> <span>about</span> us</h1>
+
+    <div class="row">
+
+        <div class="image">
+            <img src="images/about.jpeg" alt="">
+
+        </div>
+
+        <div class="content">
+            <h3>Włoska kuchnia w centrum śląska</h3>
+            <p>Łącząc ludzi z miejscem poprzez współczesną kuchnię kanadyjską, dania inspirowane rzemiosłem Canoe odzwierciedlają zróżnicowany krajobraz naszego kraju. Nasi szefowie kuchni ściśle współpracują z rolnikami i dostawcami, aby pozyskiwać najlepsze składniki z całego kraju.</p>
+            <p>Z ponad 25-letnią kulinarną historią, Canoe wciąż rzuca wyzwanie kreatywnym granicom w duchu celebrowania Kanady i jej odrębnych prowincji.</p>
+            <a href="#" class="btn"> learn more</a>
+        </div>
+    </div>
+</section>
+
+<section class="menu" id="menu">
+    <h1 class="heading"> our <span>menu</span></h1>
+
+    <h2 class="category">Przystawki</h2>
+
+    <div class="box-container">
+
+        <div class="box">
+            <img src="images/menu1.png" alt="">
+            <h3>tasty and healty</h3>
+            <div class="price">39,99 zł</div>
+            <a href="#" class="btn">add to cart</a>
+        </div>
+
+
+        <div class="box">
+            <img src="images/menu-2.png" alt="">
+            <h3>tasty and healty</h3>
+            <div class="price">39,99 zł</div>
+            <a href="#" class="btn">add to cart</a>
+        </div>
+
+
+        <div class="box">
+            <img src="images/menu8.png" alt="">
+            <h3>tasty and healty</h3>
+            <div class="price">39,99 zł</div>
+            <a href="#" class="btn">add to cart</a>
+        </div>
+
+
+    </div>
+
+    <h2 class="category">Dania główne</h2>
+
+    <div class="box-container">
+
+        <div class="box">
+            <img src="images/menu4.png" alt="">
+            <h3>tasty and healty</h3>
+            <div class="price">39,99 zł</div>
+            <a href="#" class="btn">add to cart</a>
+        </div>
+
+
+        <div class="box">
+            <img src="images/menu5.png" alt="">
+            <h3>tasty and healty</h3>
+            <div class="price">39,99 zł</div>
+            <a href="#" class="btn">add to cart</a>
+        </div>
+
+
+        <div class="box">
+            <img src="images/menu6.png" alt="">
+            <h3>tasty and healty</h3>
+            <div class="price">39,99 zł</div>
+            <a href="#" class="btn">add to cart</a>
+        </div>
+
+
+    </div>
+
+    <h2 class="category">Desery</h2>
+
+    <div class="box-container">
+
+        <div class="box">
+            <img src="images/menu7.png" alt="">
+            <h3>tasty and healty</h3>
+            <div class="price">39,99 zł</div>
+            <a href="#" class="btn">add to cart</a>
+        </div>
+
+
+        <div class="box">
+            <img src="images/menu-3.png" alt="">
+            <h3>tasty and healty</h3>
+            <div class="price">39,99 zł</div>
+            <a href="#" class="btn">add to cart</a>
+        </div>
+
+
+
+    </div>
+
+</section>
+
+
+<section class="footer" id="contact">
+    <div class="footer-info">
+        <p>ul. Wojska Polskiego 189</p>
+        <p>Katowice, 40-001</p>
+        <p>Telefon: 354756987</p>
+    </div>
+    <div class="social-links">
+       <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">Instagram</a>
+    </div>
+
+
+</section>
+
+
+</body>
+</html>

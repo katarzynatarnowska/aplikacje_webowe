@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="https://www.thymleaf.org/" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Orders</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}"  href="/css/style.css">
+
+</head>
+<body>
+
+<header class="header">
+    <a href="#" class="logo">
+
+        <img th:src="@{/images/logo.png}" alt="">
+    </a>
+
+
+
+    <div class="welcome">
+        <span sec:authentication="name"></span>
+        <!--    <p>Has role: <span sec:authentication="authorities"></span></p>-->
+
+    </div>
+
+    <div class="icons">
+
+        <div class="fas fa-search" id="search-btn"></div>
+
+
+        <a th:href="@{/admin/dashboard}" ><div class="fas fa-user" id="user-btn"> </div></a>
+        <a th:href="@{/admin/orders}"><div class="fas fa-shopping-cart" id="cart-btn"></div></a>
+
+        <a th:href="@{/logout}"><div class="fas fa-sign-out-alt" id="user-btn2"> </div></a>
+
+
+
+    </div>
+
+    <div class="search-form">
+        <input type="search" id="search-box" placeholder="search here...">
+        <label for="search-box" class="fas fa-search"></label>
+    </div>
+</header>
+
+<section class="homee" id="homee">
+
+    <div class="container">
+
+        <h1 class="nag">Zamówienia</h1>
+
+    </div>
+</section>
+
+<section class="about" id="about">
+
+
+    <div class="content">
+
+    </div>
+
+</section>
+
+
+
+</body>
+</html>

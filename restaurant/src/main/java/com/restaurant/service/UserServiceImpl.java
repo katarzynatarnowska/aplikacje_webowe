@@ -3,58 +3,55 @@ package com.restaurant.service;
 import com.restaurant.model.Role;
 import com.restaurant.model.User;
 import com.restaurant.repository.UserRepository;
-import com.restaurant.web.dto.UserRegistrationDto;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.stream.Collectors;
+import java.util.List;
+import java.util.Optional;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserDetailsService {
 
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    private UserRepository userRepository;
+    @Autowired
+    UserRepository userRepository;
 
-//    @Autowired
-//    private BCryptPasswordEncoder passwordEncoder;
-
-    public UserServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    @Override
+    public void saveUser(User user) {
+        String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
+        user.setRole(Role.USER);
+        userRepository.save(user);
     }
 
     @Override
-    public User save(UserRegistrationDto registrationDto) {
-    User user=new User(registrationDto.getFirstName(),
-            registrationDto.getLastName(), registrationDto.getEmail(),
-            registrationDto.getPassword(), Arrays.asList(new Role("ROLE_USER")) );
-
-    return userRepository.save(user);
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
-
-        User user= userRepository.findByEmail(username);
-        if(user ==null){
-            throw new UsernameNotFoundException("Invalid username or password");
+    public List<Object> isUserPresent(User user) {
+        boolean userExists = false;
+        String message = null;
+        Optional<User> existingUserEmail = userRepository.findByEmail(user.getEmail());
+        if(existingUserEmail.isPresent()){
+            userExists = true;
+            message = "Email Already Present!";
         }
 
-        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), null);
+        return Arrays.asList(userExists, message);
     }
 
-    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role>roles){
-        roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
 
-        return null;
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        return userRepository.findByEmail(email).orElseThrow(
+                ()-> new UsernameNotFoundException(
+                        String.format("USER_NOT_FOUND", email)
+                ));
     }
 
 }

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="https://www.thymleaf.org/" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>RestaurantPage</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" th:href="@{/css/style.css}"  href="/css/style.css">
+
+</head>
+<body>
+
+<header class="header">
+  <a href="#" class="logo">
+
+    <img th:src="@{/images/logo.png}" alt="">
+  </a>
+
+
+
+  <div class="welcome">
+    <span sec:authentication="name"></span>
+    <!--    <p>Has role: <span sec:authentication="authorities"></span></p>-->
+
+  </div>
+
+  <div class="icons">
+
+    <div class="fas fa-search" id="search-btn"></div>
+
+
+    <a th:href="@{/admin/dashboard}"><div class="fas fa-user" id="user-btn"> </div></a>
+    <a th:href="@{/admin/orders}"><div class="fas fa-shopping-cart" id="cart-btn"></div></a>
+
+    <a th:href="@{/logout}"><div class="fas fa-sign-out-alt" id="user-btn2"> </div></a>
+
+
+
+  </div>
+
+  <div class="search-form">
+    <input type="search" id="search-box" placeholder="search here...">
+    <label for="search-box" class="fas fa-search"></label>
+  </div>
+</header>
+
+<section class="homee" id="homee">
+
+  <div class="container">
+
+    <h1 class="nag">Produkty</h1>
+
+    <a th:href="@{/saveProductPage}" class="btn ">Dodaj produkt</a>
+
+
+    <table class="table">
+
+      <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">nazwa</th>
+        <th scope="col">Cena</th>
+<!--        <th scope="col">Obrazek</th>-->
+
+
+      </tr>
+
+      </thead>
+
+      <tbody>
+      <tr th:each="product: ${productlist}">
+        <th th th:text="${product.id}" scope="row"></th>
+        <td th th:text="${product.name}" ></td>
+        <td th th:text="${product.price}" ></td>
+<!--        <th th:text="${product.image}" scope="row"></th>-->
+<td>
+        <a th th:href="@{/updateProduct/{id}(id=${product.id})}" class="btn">Update</a>
+        <a th th:href="@{/deleteProduct/{id}(id=${product.id})}" class="btn">Delete</a>
+
+</td>
+
+      </tr>
+      </tbody>
+    </table>
+
+    <nav aria-label="Pagination" th:if="${productlist.totalPages gt 0}">
+      <ul class="pagination justify-content-center font-weight-bold">
+        <li class="page-item" th:classappend="${productlist.number eq 0} ? 'disabled'">
+          <a class="page-link"
+             th:href="@{/admin/products?page={id}(id=${productlist.number lt 2 ? 1 : productlist.number})}"
+             aria-label="Previous" title="Previous Page" data-toggle="tooltip">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li class="page-item" th:classappend="${i eq productlist.number + 1} ? 'active'"
+            th:each="i : ${#numbers.sequence( 1, productlist.totalPages, 1)}">
+          <a class="page-link" th:href="@{/admin/products?page={id}(id=${i})}" th:text="${i}"
+             th:title="${'Page '+ i}" data-toggle="tooltip"></a>
+        </li>
+        <li class="page-item" th:classappend="${productlist.number + 1 eq productlist.totalPages} ? 'disabled'">
+          <a class="page-link"
+             th:href="@{/admin/products?page={id}(id=${productlist.number + 2})}"
+             aria-label="Next" title="Next Page" data-toggle="tooltip">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+
+  </div>
+</section>
+
+<section class="about" id="about">
+
+
+  <div class="content">
+
+  </div>
+
+</section>
+
+
+
+</body>
+</html>

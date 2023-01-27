@@ -1,34 +1,50 @@
 package com.restaurant.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
+import java.math.BigDecimal;
 
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 @Entity
-@Table(name="products")
+@Table(name = "product")
 public class Product {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id_products;
+    @Column(name = "id", nullable = false)
+    private Integer id;
 
-    @Column(name = "product_name")
-    private String productName;
+    @Size(max = 45)
+    @NotNull
+    @Column(name = "name", nullable = false, length = 45)
+    private String name;
 
+    @NotNull
+    @Column(name = "price", nullable = false, precision = 11, scale = 2)
+    private BigDecimal price;
 
-    @Column(name = "price")
-    private long price;
+    public Integer getId() {
+        return id;
+    }
 
-    @Column(name = "quantity")
-    private long quantity;
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
 
 }
