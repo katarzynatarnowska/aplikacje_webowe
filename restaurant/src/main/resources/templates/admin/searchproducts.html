@@ -26,13 +26,17 @@
 
     <div class="icons">
 
+
         <a th:href="@{/logout}"><div class="fas fa-sign-out-alt" id="user-btn2"> </div></a>
 
 
 
     </div>
 
-
+    <div class="search-form">
+        <input type="search" id="search-box" placeholder="search here...">
+        <label for="search-box" class="fas fa-search"></label>
+    </div>
 </header>
 
 <section class="aside">
@@ -44,38 +48,47 @@
 
 
 </section>
+
 <section class="homee" id="homee">
 
     <div class="container">
 
-        <h1 class="nag"></h1>
+        <div class="nagl">
+
+
+            <form th:action="@{/search}" method="get">
+                <input  name="keyword" class="search-form" th:value="${keyword}"  placeholder="Wyszukaj">
+
+            </form>
+        </div>
+
+
 
         <table class="table">
 
             <thead>
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Imię</th>
-                <th scope="col">Nazwisko</th>
-                <th scope="col">Adres</th>
-                <th scope="col">Email</th>
-                <th scope="col"></th>
+                <th scope="col">nazwa</th>
+                <th scope="col">Cena</th>
+                <th scope="col">Action</th>
+
+                <!--        <th scope="col">Obrazek</th>-->
+
 
             </tr>
 
             </thead>
 
             <tbody>
-            <tr th:each="user: ${userlist}" th:field="${user}">
-                <th th:text="${user.id}" scope="row"></th>
-                <td th:text="${user.firstName}" ></td>
-                <td th:text="${user.lastName}"></td>
-                <td th:text="${user.address}" ></td>
-                <td th:text="${user.email}" ></td>
-
+            <tr th:each="product: ${productlist}">
+                <th th th:text="${product.id}" scope="row"></th>
+                <td th th:text="${product.name}" ></td>
+                <td th th:text="${product.price}" ></td>
+                <!--        <th th:text="${product.image}" scope="row"></th>-->
                 <td>
-                    <a th th:href="@{/updateUser/{id}(id=${user.id})}" class="btn1">Edytuj</a>
-                    <a th th:href="@{/deleteUser/{id}(id=${user.id})}" class="btn2">Usuń</a>
+                    <a th th:href="@{/updateProduct/{id}(id=${product.id})}" class="btn1">Edytuj</a>
+                    <a th th:href="@{/deleteProduct/{id}(id=${product.id})}" class="btn2">Usuń</a>
 
                 </td>
 
@@ -83,9 +96,19 @@
             </tbody>
         </table>
 
+
+
     </div>
 </section>
 
+<section class="about" id="about">
+
+
+    <div class="content">
+
+    </div>
+
+</section>
 
 
 

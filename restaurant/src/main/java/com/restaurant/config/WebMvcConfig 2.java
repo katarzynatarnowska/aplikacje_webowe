@@ -12,7 +12,5 @@ public class WebMvcConfig implements WebMvcConfigurer{
         registry.addViewController("/access-denied").setViewName("access-denied");
         registry.addViewController("/").setViewName("homepage");
         registry.addViewController("/about-us").setViewName("about-us");
-        registry.addViewController("/dashboard").setViewName("user/dashboard");
-
     }
 }

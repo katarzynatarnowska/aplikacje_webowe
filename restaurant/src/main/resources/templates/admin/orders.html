@@ -2,7 +2,7 @@
 <html lang="pl" xmlns:th="https://www.thymleaf.org/" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Orders</title>
+    <title>RestaurantPage</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" th:href="@{/css/style.css}"  href="/css/style.css">
@@ -26,11 +26,6 @@
 
     <div class="icons">
 
-        <div class="fas fa-search" id="search-btn"></div>
-
-
-        <a th:href="@{/admin/dashboard}" ><div class="fas fa-user" id="user-btn"> </div></a>
-        <a th:href="@{/admin/orders}"><div class="fas fa-shopping-cart" id="cart-btn"></div></a>
 
         <a th:href="@{/logout}"><div class="fas fa-sign-out-alt" id="user-btn2"> </div></a>
 
@@ -38,17 +33,88 @@
 
     </div>
 
-    <div class="search-form">
-        <input type="search" id="search-box" placeholder="search here...">
-        <label for="search-box" class="fas fa-search"></label>
-    </div>
+
 </header>
+
+<section class="aside">
+    <li><i class="fas fa-users"></i><a href="/admin/users">Użytkownicy</a> </li>
+    <li><i class="fas fa-list"></i><a href="/admin/products">Produkty</a> </li>
+    <li><i class="fas fa-plus"></i><a th:href="@{/saveProductPage}">Dodaj</a> </li>
+
+    <li><i class="fas fa-shopping-cart"></i><a href="/admin/orders">Zamówienia</a> </li>
+
+
+</section>
 
 <section class="homee" id="homee">
 
     <div class="container">
 
-        <h1 class="nag">Zamówienia</h1>
+        <div class="nagl">
+
+
+<!--            <form th:action="@{/search}" method="get">-->
+<!--                <input  type="text" class="search-form" name="keyword" th:value="${keyword}"  placeholder="Search">-->
+
+<!--            </form>-->
+        </div>
+
+        <br></br>
+        <br></br>
+
+
+
+        <table class="table">
+
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">ID użytkownika</th>
+                <th scope="col">Cena (zł)</th>
+
+                <!--        <th scope="col">Obrazek</th>-->
+
+
+            </tr>
+
+            </thead>
+
+            <tbody>
+            <tr th:each="order: ${order}">
+                <th th th:text="${order.id}" scope="row"></th>
+                <td th th:text="${order.idUser}" ></td>
+                <td th th:text="${order.price}" ></td>
+                <!--        <th th:text="${product.image}" scope="row"></th>-->
+
+            </tr>
+            </tbody>
+        </table>
+        <div class="pagination" >
+            <nav aria-label="Pagination" th:if="${order.totalPages gt 0}">
+                <td class="pagination justify-content-center font-weight-bold">
+                    <tr class="page-item" th:classappend="${order.number eq 0} ? 'disabled'">
+                        <a class="page-link"
+                           th:href="@{/admin/orders?page={id}(id=${order.number lt 2 ? 1 : order.number})}"
+                           aria-label="Previous" title="Previous Page" data-toggle="tooltip">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </tr>
+                    <tr class="page-item" th:classappend="${i eq order.number + 1} ? 'active'"
+                        th:each="i : ${#numbers.sequence( 1, order.totalPages, 1)}">
+                        <a class="page-link" th:href="@{/admin/orders?page={id}(id=${i})}" th:text="${i}"
+                           th:title="${'Page '+ i}" data-toggle="tooltip"></a>
+                    </tr>
+                    <tr class="page-item" th:classappend="${order.number + 1 eq order.totalPages} ? 'disabled'">
+                        <a class="page-link"
+                           th:href="@{/admin/orders?page={id}(id=${order.number + 2})}"
+                           aria-label="Next" title="Next Page" data-toggle="tooltip">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </tr>
+                </td>
+            </nav>
+
+        </div>
 
     </div>
 </section>

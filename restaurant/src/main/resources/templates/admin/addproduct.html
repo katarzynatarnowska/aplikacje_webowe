@@ -20,17 +20,11 @@
 
   <div class="welcome">
     <span sec:authentication="name"></span>
-    <!--    <p>Has role: <span sec:authentication="authorities"></span></p>-->
 
   </div>
 
   <div class="icons">
 
-    <div class="fas fa-search" id="search-btn"></div>
-
-
-    <a th:href="@{/admin/dashboard}"><div class="fas fa-user" id="user-btn"> </div></a>
-    <a th:href="@{/admin/orders}"><div class="fas fa-shopping-cart" id="cart-btn"></div></a>
 
     <a th:href="@{/logout}"><div class="fas fa-sign-out-alt" id="user-btn2"> </div></a>
 
@@ -38,11 +32,16 @@
 
   </div>
 
-  <div class="search-form">
-    <input type="search" id="search-box" placeholder="search here...">
-    <label for="search-box" class="fas fa-search"></label>
-  </div>
+
 </header>
+
+<section class="aside">
+  <li><i class="fas fa-users"></i><a href="/admin/users">Użytkownicy</a> </li>
+  <li><i class="fas fa-list"></i><a href="/admin/products">Produkty</a> </li>
+  <li><i class="fas fa-shopping-cart"></i><a href="/admin/orders">Zamówienia</a> </li>
+
+
+</section>
 
 <section class="homee" id="homee">
 
@@ -51,11 +50,11 @@
     <h1 class="nag">Dodaj produkt</h1>
     <form th:action="@{/saveProduct}"  th:object="${product}" method="post">
 
-      <input type="text" th:field="*{name}"  class="form-control"  placeholder="Nazwa">
-      <input type="text" th:field="*{price}"  class="form-control"  placeholder="Cena">
+      <input type="text" th:field="*{name}"  class="search-form"  placeholder="Nazwa">
+      <input type="text" th:field="*{price}"  class="search-form"  placeholder="Cena">
       <!--      <input type="text" th:field="*{image}"  class="form-control" placeholder="Adres">-->
 
-      <button type="submit" class="submit" th:text="Save"></button>
+      <button type="submit" class="btn1" th:text="Zapisz"></button>
 
 
     </form>

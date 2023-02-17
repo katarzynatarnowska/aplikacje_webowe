@@ -156,6 +156,47 @@ section{
     color: var(--main-color);
 }
 
+.aside{
+    float: left;
+    background-color: black;
+    padding: 250px 0;
+    width: 210px;
+    padding-right: 80px;
+
+}
+
+.aside li{
+    list-style: none;
+    padding: 15px 0;
+    text-align: left;
+
+
+}
+
+.aside li:hover{
+    background: none;
+    cursor: pointer;
+
+}
+.aside li i{
+    color: white;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 20px;
+    margin: 0 10px 0 25px;
+}
+
+.aside li a{
+    text-decoration: none;
+    color: white;
+    font-weight: 300;
+
+
+
+}
+
 
 #menu-btn{
     display: none;
@@ -196,10 +237,170 @@ section{
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background-color: black;
+    background:url(../images/home1.jpeg) no-repeat;
     background-size: cover;
     background-position: center;
 }
+
+.homee .table{
+    max-width: 100%;
+    font-size: 14px;
+
+    /*border-collapse: collapse;*/
+    border-radius: 4px;
+    padding: 15px;
+    overflow: auto;
+    margin: auto;
+    border-collapse: collapse;
+}
+
+.homee .table td, th{
+    padding: 15px;
+    text-align: center;
+    border-collapse: collapse;
+    border-bottom: solid;
+    border-bottom-color: white;
+
+
+}
+
+.homee .search-form{
+
+
+    padding: 10px 12px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #24292e;
+    vertical-align: middle;
+    background-color: #ffffff;
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    outline: none;
+    box-shadow: rgba(225, 228, 232, 0.2) 0px 1px 0px 0px inset;
+    position: center;
+}
+.homee .search-form :focus{
+    border-color: #0366d6;
+    outline: none;
+    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+}
+
+
+.homee .search-form1{
+
+
+    padding: 10px 12px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #24292e;
+    vertical-align: middle;
+    background-color: #ffffff;
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    outline: none;
+    box-shadow: rgba(225, 228, 232, 0.2) 0px 1px 0px 0px inset;
+    position: center;
+    width: 70%;
+    padding-top: 10px;
+}
+.homee .search-form1 :focus{
+    border-color: #0366d6;
+    outline: none;
+    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+}
+
+
+.homee .table thead{
+    background-color: burlywood;
+
+}
+
+
+.homee .btn3 {
+
+    display: inline-block;
+    outline: 0;
+    cursor: pointer;
+    padding: 5px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    vertical-align: middle;
+    border: 1px solid;
+    border-radius: 6px;
+    color: #0366d6;
+    background-color: #fafbfc;
+    border-color: #1b1f2326;
+    box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px 0px inset;
+    transition: 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+    transition-property: color, background-color, border-color;
+    position: center;
+}
+.homee .btn3:hover {
+    color: #ffffff;
+    background-color: #0366d6;
+    border-color: #1b1f2326;
+    box-shadow: rgba(27, 31, 35, 0.1) 0px 1px 0px 0px, rgba(255, 255, 255, 0.03) 0px 1px 0px 0px inset;
+    transition-duration: 0.1s;
+}
+
+
+.homee .btn1 {
+
+
+    display: inline-block;
+    outline: 0;
+    cursor: pointer;
+    padding: 5px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    vertical-align: middle;
+    border: 1px solid;
+    border-radius: 6px;
+    color: #ffffff;
+    background-color: #2ea44f;
+    border-color: #1b1f2326;
+    box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px 0px inset;
+    transition: 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+    transition-property: color, background-color, border-color;
+}
+.homee .btn1 :hover {
+    background-color: #2c974b;
+    border-color: #1b1f2326;
+    transition-duration: 0.1s;
+}
+
+.homee .btn2 {
+
+
+    display: inline-block;
+    outline: 0;
+    cursor: pointer;
+    padding: 5px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    vertical-align: middle;
+    border: 1px solid;
+    border-radius: 6px;
+    color: #ffffff;
+    background-color: red;
+    border-color: #1b1f2326;
+    box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px 0px inset;
+    transition: 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+    transition-property: color, background-color, border-color;
+}
+.homee .btn2 :hover {
+    background-color: red;
+    border-color: #1b1f2326;
+    transition-duration: 0.1s;
+}
+
 
 
 .home{
@@ -232,7 +433,7 @@ section{
 .home .container{
     width:520px;
     height:560px;
-    position:relative;
+    position: relative;
     margin:2% auto;
     background:rgba(232,232,232,0.7);
     padding:10px;
@@ -243,16 +444,27 @@ section{
 .home .items{
     background-color: black;
     min-height: 100vh;
+    float: left;
+}
+
+.right {
+    width: 500px;
+    float: right;
+    overflow: hidden;
+    padding: 250px 0;
+
 }
 
 .homee .container{
-    width:720px;
+    width:90%;
     height:560px;
-    position:relative;
-    margin:2% auto;
-    background:rgba(232,232,232,0.7);
-    padding:10px;
+    margin-left: unset;
+    /*position:absolute;*/
+    background:rgba(232,232,232,0.8);
+    padding:30px;
     overflow: hidden;
+    float: left;
+    /*padding-left: 180px;*/
 
 }
 
@@ -399,6 +611,78 @@ section{
 
 .menu .box-container .box:hover > *{
     color: var(--black);
+}
+
+.menu .table{
+    max-width: 90%;
+    font-size: 14px;
+
+    /*border-collapse: collapse;*/
+    border-radius: 4px;
+    padding: 15px;
+    overflow: auto;
+    margin: auto;
+    border-collapse: collapse;
+    color: white;
+
+}
+
+.menu .table td, th{
+    padding: 15px;
+    text-align: center;
+    /*border-collapse: collapse;*/
+    /*border-bottom: solid;*/
+    /*border-bottom-color: white;*/
+    font-size: 14px;
+
+
+}
+
+.menu .btn4{
+    margin-top: 1rem;
+    width: 80px;
+    display: inline-block;
+    font-size: 1.7rem;
+    color: white;
+    background: var(--main-color);
+    cursor: pointer;
+    padding: 5px 12px;
+
+
+}
+
+.menu .btn5 {
+    margin-top: 1rem;
+    width: 80px;
+    display: inline-block;
+    font-size: 1.7rem;
+    color: white;
+    background: var(--main-color);
+    cursor: pointer;
+    padding: 5px 12px;
+    align-items: center;
+    text-align: center;
+}
+
+.menu .btnnn{
+
+    align-items: center;
+    text-align: center;
+
+
+
+}
+
+
+.homee .pagination{
+    text-align: center;
+    font-size: 16px;
+    padding-top: 20px;
+
+}
+.homee .pagination tr{
+
+    border-bottom-color: #2c974b;
 }
 
 .footer{

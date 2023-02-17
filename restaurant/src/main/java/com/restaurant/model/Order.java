@@ -2,25 +2,23 @@ package com.restaurant.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-
-import java.math.BigDecimal;
 
 @Entity
-@Table(name = "product")
-public class Product {
+@Table(name = "`order`")
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Size(max = 45)
     @NotNull
-    @Column(name = "name", nullable = false, length = 45)
-    private String name;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_user", nullable = false)
+    private User idUser;
+
 
     @NotNull
-    @Column(name = "price", nullable = false, precision = 11, scale = 2)
+    @Column(name = "price", nullable = false)
     private Integer price;
 
     public Integer getId() {
@@ -31,13 +29,14 @@ public class Product {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public User getIdUser() {
+        return idUser;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setIdUser(User idUser) {
+        this.idUser = idUser;
     }
+
 
     public Integer getPrice() {
         return price;

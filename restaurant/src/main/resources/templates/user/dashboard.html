@@ -17,10 +17,10 @@
   </a>
 
   <nav class="navbar">
-    <a href="#">home</a>
-    <a href="#about">about</a>
+    <a href="#">strona główna</a>
+    <a href="#about">o nas</a>
     <a href="#menu">menu</a>
-    <a href="#contact">contact</a>
+    <a href="#contact">kontakt</a>
 
 
   </nav>
@@ -37,7 +37,7 @@
   <div class="icons">
 
 
-    <div class="fas fa-shopping-cart" id="cart-btn"></div>
+    <a th:href="@{/user/shoppingcart}"><div class="fas fa-shopping-cart" id="cart-btn"></div></a>
     <a th:href="@{/logout}"><div class="fas fa-sign-out-alt" id="user-btn2"> </div></a>
 
 
@@ -60,7 +60,7 @@
 
 <section class="about" id="about">
 
-  <h1 class="heading"> <span>about</span> us</h1>
+  <h1 class="heading"> <span>o</span> nas</h1>
 
   <div class="row">
 
@@ -73,96 +73,119 @@
       <h3>Włoska kuchnia w centrum śląska</h3>
       <p>Łącząc ludzi z miejscem poprzez współczesną kuchnię kanadyjską, dania inspirowane rzemiosłem Canoe odzwierciedlają zróżnicowany krajobraz naszego kraju. Nasi szefowie kuchni ściśle współpracują z rolnikami i dostawcami, aby pozyskiwać najlepsze składniki z całego kraju.</p>
       <p>Z ponad 25-letnią kulinarną historią, Canoe wciąż rzuca wyzwanie kreatywnym granicom w duchu celebrowania Kanady i jej odrębnych prowincji.</p>
-      <a href="#" class="btn"> learn more</a>
+      <a href="#" class="btn"> czytaj więcej</a>
     </div>
   </div>
 </section>
 
 <section class="menu" id="menu">
-  <h1 class="heading"> our <span>menu</span></h1>
-
-  <h2 class="category">Przystawki</h2>
-
-  <div class="box-container">
-
-    <div class="box">
-      <img src="images/menu1.png" alt="">
-      <h3>Tatar z łososia</h3>
-      <div class="price">59,99 zł</div>
-      <a href="#" class="btn">Dodaj</a>
-    </div>
+  <h1 class="heading"> nasze <span>menu</span></h1>
 
 
-    <div class="box">
-      <img src="images/menu-2.png" alt="">
-      <h3>Sałatka wiosenna</h3>
-      <div class="price">39,99 zł</div>
-      <a href="#" class="btn">Dodaj</a>
-    </div>
+  <table class="table">
+
+    <thead>
+    <tr>
+      <th scope="col">Danie</th>
+      <th scope="col">Cena</th>
+      <th scope="col"></th>
+
+    </tr>
+
+    </thead>
+
+    <tbody>
+    <tr th:each="product: ${products}">
+      <td  th:text="${product.name}" ></td>
+      <td  th:text="${product.price}" ></td>
+      <td><a th:href="@{/user/cart/{id}(id=${product.id})}" class="btn4">Dodaj</a></td>
 
 
-    <div class="box">
-      <img src="images/menu8.png" alt="">
-      <h3>Gulasz wołowy</h3>
-      <div class="price">49,99 zł</div>
-      <a href="#" class="btn">Dodaj</a>
-    </div>
+    </tr>
+    </tbody>
+  </table>
 
 
-  </div>
+<!--  <div class="box-container">-->
 
-  <h2 class="category">Dania główne</h2>
-
-  <div class="box-container">
-
-    <div class="box">
-      <img src="images/menu4.png" alt="">
-      <h3>Kaczka w sosnie własnym</h3>
-      <div class="price">69,99 zł</div>
-      <a href="#" class="btn">Dodaj</a>
-    </div>
+<!--    <div class="box">-->
+<!--      <img src="images/menu1.png" alt="">-->
+<!--      <h3>Tatar z łososia</h3>-->
+<!--      <div class="price">59,99 zł</div>-->
+<!--      <a href="#" class="btn">Dodaj</a>-->
+<!--    </div>-->
 
 
-    <div class="box">
-      <img src="images/menu5.png" alt="">
-      <h3>Ryba w sosoie koperkowym</h3>
-      <div class="price">79,99 zł</div>
-      <a href="#" class="btn">Dodaj</a>
-    </div>
+<!--    <div class="box">-->
+<!--      <img src="images/menu-2.png" alt="">-->
+<!--      <h3>Sałatka wiosenna</h3>-->
+<!--      <div class="price">39,99 zł</div>-->
+<!--      <a href="#" class="btn">Dodaj</a>-->
+<!--    </div>-->
 
 
-    <div class="box">
-      <img src="images/menu6.png" alt="">
-      <h3>Boczek pieczony</h3>
-      <div class="price">39,99 zł</div>
-      <a href="#" class="btn">Dodaj</a>
-    </div>
+<!--    <div class="box">-->
+<!--      <img src="images/menu8.png" alt="">-->
+<!--      <h3>Gulasz wołowy</h3>-->
+<!--      <div class="price">49,99 zł</div>-->
+<!--      <a href="#" class="btn">Dodaj</a>-->
+<!--    </div>-->
 
 
-  </div>
+<!--  </div>-->
 
-  <h2 class="category">Desery</h2>
+<!--  <h2 class="category">Dania główne</h2>-->
 
-  <div class="box-container">
+<!--  <div class="box-container">-->
 
-    <div class="box">
-      <img src="images/menu7.png" alt="">
-      <h3>Brownie</h3>
-      <div class="price">19,99 zł</div>
-      <a href="#" class="btn">Dodaj</a>
-    </div>
-
-
-    <div class="box">
-      <img src="images/menu-3.png" alt="">
-      <h3>Szarlotka</h3>
-      <div class="price">29,99 zł</div>
-      <a href="#" class="btn">Dodaj</a>
-    </div>
+<!--    <div class="box">-->
+<!--      <img src="images/menu4.png" alt="">-->
+<!--      <h3>Kaczka w sosnie własnym</h3>-->
+<!--      <div class="price">69,99 zł</div>-->
+<!--      <a href="#" class="btn">Dodaj</a>-->
+<!--    </div>-->
 
 
+<!--    <div class="box">-->
+<!--      <img src="images/menu5.png" alt="">-->
+<!--      <h3>Ryba w sosoie koperkowym</h3>-->
+<!--      <div class="price">79,99 zł</div>-->
+<!--      <a href="#" class="btn">Dodaj</a>-->
+<!--    </div>-->
 
-  </div>
+
+<!--    <div class="box">-->
+<!--      <img src="images/menu6.png" alt="">-->
+<!--      <h3>Boczek pieczony</h3>-->
+<!--      <div class="price">39,99 zł</div>-->
+<!--      <a href="#" class="btn">Dodaj</a>-->
+<!--    </div>-->
+
+
+<!--  </div>-->
+
+<!--  <h2 class="category">Desery</h2>-->
+
+<!--  <div class="box-container">-->
+
+<!--    <div class="box">-->
+<!--      <img src="images/menu7.png" alt="">-->
+<!--      <h3>Brownie</h3>-->
+<!--      <div class="price">19,99 zł</div>-->
+<!--      <a href="#" class="btn">Dodaj</a>-->
+<!--    </div>-->
+
+
+<!--    <div class="box">-->
+<!--      <img src="images/menu-3.png" alt="">-->
+<!--      <h3>Szarlotka</h3>-->
+<!--      <div class="price">29,99 zł</div>-->
+<!--      <a href="#" class="btn">Dodaj</a>-->
+<!--    </div>-->
+
+
+
+<!--  </div>-->
 
 </section>
 

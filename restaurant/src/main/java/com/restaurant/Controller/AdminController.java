@@ -2,17 +2,21 @@ package com.restaurant.Controller;
 
 import com.restaurant.model.Product;
 import com.restaurant.model.User;
+import com.restaurant.repository.OrderRepository;
 import com.restaurant.repository.ProductRepository;
 import com.restaurant.repository.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import com.restaurant.service.ProductService;
 
-import java.util.List;
 import java.util.Optional;
+import java.util.List;
 
 @Controller
 public class AdminController {
@@ -22,23 +26,27 @@ public class AdminController {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private ProductService productService;
+    @Autowired
+    private OrderRepository orderRepository;
+
 
     @RequestMapping(path = {"/admin/dashboard"}, method = RequestMethod.GET)
     public String adminHome(){
         return "admin/dashboard";
     }
 
-    @RequestMapping(value = {"/admin/orders"}, method = RequestMethod.GET)
-    public String adminOrder(){
-        return "admin/orders";
-    }
+//    @RequestMapping(value = {"/admin/orders"}, method = RequestMethod.GET)
+//    public String adminOrder(){
+//        return "admin/orders";
+//    }
 
 
 
 @GetMapping(value = {"/admin/users"})
 public String listUser(Model model){
       model.addAttribute("userlist", userRepository.findAll());
-    System.out.println("X");
 
 //    List<User> userd = userRepository.findAll();
 //       for(User usr:userd){
@@ -48,6 +56,30 @@ public String listUser(Model model){
 
         return "admin/users";
     }
+
+
+    @PostMapping("/saveUser")
+    public String saveUser(@ModelAttribute("users") User user) {
+        userRepository.save(user);
+        return "redirect:/admin/users";
+    }
+
+
+    @GetMapping("/updateUser/{id}")
+
+    public String updateUser(@PathVariable("id") long id, Model model){
+        Optional<User> temp=userRepository.findById(id);
+        User user=temp.get();
+        model.addAttribute("user", user);
+        return "admin/updateuser";
+    }
+    @GetMapping("/deleteUser/{id}")
+    public String deleteUser(@PathVariable("id")long id){
+        userRepository.deleteById(id);
+
+        return "redirect:/admin/users";
+    }
+
 
 
 //    @GetMapping(value = {"/admin/products"})
@@ -65,7 +97,7 @@ public String listUser(Model model){
     public String listProduct(HttpServletRequest request, Model model) {
 
         int page = 0; //default page number is 0 (yes it is weird)
-        int size = 2; //default page size is 10
+        int size = 5; //default page size is 10
 
         if (request.getParameter("page") != null && !request.getParameter("page").isEmpty()) {
             page = Integer.parseInt(request.getParameter("page")) - 1;
@@ -94,8 +126,8 @@ public String listUser(Model model){
      @GetMapping("/updateProduct/{id}")
 
      public String updateProduct(@PathVariable("id")int id, Model model){
-         Optional<Product> temp=productRepository.findById(id);
-        Product product=temp.get();
+         Product temp=productRepository.findById(id);
+        Product product=temp;
          model.addAttribute("product", product);
         return "admin/updateproduct";
      }
@@ -127,6 +159,46 @@ public String listUser(Model model){
 //        return "/admin/users";
 //    }
 
+//    @RequestMapping(path = {"/admin/products","/search"})
+//    public String search(Model model, HttpSession session, String keyword) {
+//        if (keyword != null) {
+//            session.setAttribute("productlist", productService.getByKeyword(keyword));
+//        } else {
+//            session.setAttribute("productlist", productService.getAllProducts(keyword));
+//
+//        }
+//        return "/admin/products";
+//    }
+
+    @RequestMapping(path = {"/admin/products","/search"})
+    public String search(Product product, Model model, String keyword) {
+        if(keyword!=null) {
+            List<Product> list = productService.getByKeyword(keyword);
+            model.addAttribute("productlist", list);
+        }else {
+            List<Product> list = productService.getAllProducts(keyword);
+            model.addAttribute("productlist", list);}
+        return "/admin/searchproducts";
+    }
+
+
+    @GetMapping("/admin/orders")
+    public String order(HttpServletRequest request, Model model) {
+
+        int page = 0; //default page number is 0 (yes it is weird)
+        int size = 7; //default page size is 10
+
+        if (request.getParameter("page") != null && !request.getParameter("page").isEmpty()) {
+            page = Integer.parseInt(request.getParameter("page")) - 1;
+        }
+
+        if (request.getParameter("size") != null && !request.getParameter("size").isEmpty()) {
+            size = Integer.parseInt(request.getParameter("size"));
+        }
+
+        model.addAttribute("order", orderRepository.findAll(PageRequest.of(page, size)));
+        return "/admin/orders";
+    }
 
 }
 

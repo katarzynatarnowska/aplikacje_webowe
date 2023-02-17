@@ -33,71 +33,34 @@
 
     </div>
 
+
+
+
+
     <div class="search-form">
         <input type="search" id="search-box" placeholder="search here...">
         <label for="search-box" class="fas fa-search"></label>
     </div>
 </header>
 
+<section class="aside">
+    <li><i class="fas fa-users"></i><a href="/admin/users">Użytkownicy</a> </li>
+    <li><i class="fas fa-list"></i><a href="/admin/products">Produkty</a> </li>
+    <li><i class="fas fa-plus"></i><a th:href="@{/saveProductPage}">Dodaj</a> </li>
+
+    <li><i class="fas fa-shopping-cart"></i><a href="/admin/orders">Zamówienia</a> </li>
+
+
+</section>
+
+
 <section class="home" id="home">
 
 
-    <div class="items">
-        <li><i class="fas fa-users"></i><a href="#">Użytkownicy</a> </li>
-        <li><i class="fas fa-list"></i><a href="#">Produkty</a> </li>
-        <li><i class="fas fa-shopping-cart"></i><a href="#">Zamówienia</a> </li>
 
 
-    </div>
-        <!--    <div class="container">-->
-
-<!--        <h1 class="nag">Panel Admina</h1>-->
-
-        <table class="table">
-
-            <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Imię</th>
-                <th scope="col">Nazwisko</th>
-                <th scope="col">Adres</th>
-                <th scope="col">Email</th>
-                <th scope="col">Password</th>
-
-            </tr>
-
-            </thead>
-
-            <tbody>
-            <tr th:each="user: ${userlist}">
-                <th th:text="${user.id}" scope="row"></th>
-                <td th:text="${user.firstName}" ></td>
-                <td th:text="${user.lastName}"></td>
-                <td th:text="${user.address}" ></td>
-                <td th:text="${user.email}" ></td>
-                <td th:text="${user.password}" ></td>
-
-            <td>
-                +         <a th:href="@{/deleteUser/{id}(id=${user.id})}" class="btn btn-danger">Delete</a>
-
-            </td>
-
-
-            </tr>
-            </tbody>
-        </table>
-
-    </div>
 </section>
 
-<section class="about" id="about">
-
-
-        <div class="content">
-
-        </div>
-
-</section>
 
 
 

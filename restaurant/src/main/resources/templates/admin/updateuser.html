@@ -27,17 +27,23 @@
   <div class="icons">
 
 
+
     <a th:href="@{/logout}"><div class="fas fa-sign-out-alt" id="user-btn2"> </div></a>
 
 
 
   </div>
 
+  <div class="search-form">
+    <input type="search" id="search-box" placeholder="search here...">
+    <label for="search-box" class="fas fa-search"></label>
+  </div>
 </header>
 
 <section class="aside">
   <li><i class="fas fa-users"></i><a href="/admin/users">Użytkownicy</a> </li>
   <li><i class="fas fa-list"></i><a href="/admin/products">Produkty</a> </li>
+  <li><i class="fas fa-plus"></i><a th:href="@{/saveProductPage}">Dodaj</a> </li>
   <li><i class="fas fa-shopping-cart"></i><a href="/admin/orders">Zamówienia</a> </li>
 
 
@@ -47,14 +53,24 @@
 
   <div class="container">
 
-    <h1 class="nag">Edytuj produkt</h1>
-    <form th:action="@{/saveProduct}"  th:object="${product}" method="post">
+    <h1 class="nag"></h1>
+    <form th:action="@{/saveUser}"  th:object="${user}" method="post">
 
       <input hidden="hidden" th:field="*{id}">
-      <input type="text" th:field="*{name}"  class="search-form"  placeholder="Nazwa">
-      <input type="text" th:field="*{price}"  class="search-form"  placeholder="Cena">
-<!--      <input type="text" th:field="*{image}"  class="form-control" placeholder="Adres">-->
+      <input type="text" th:field="*{firstName}"  class="search-form1"  placeholder="Imię">
+      <input type="text" th:field="*{lastName}"  class="search-form1"  placeholder="Nazwisko">
 
+      <input type="text" th:field="*{address}"  class="search-form1"  placeholder="Adres">
+
+      <input type="text" th:field="*{email}"  class="search-form1"  placeholder="Email">
+
+      <input type="text" th:field="*{password}"  class="search-form1"  placeholder="Hasło">
+      <input type="text" th:field="*{role}"  class="search-form1"  placeholder="Rola">
+
+
+      <!--      <input type="text" th:field="*{image}"  class="form-control" placeholder="Adres">-->
+
+      <br></br>
       <button type="submit" class="btn1" >Zapisz</button>
 
 

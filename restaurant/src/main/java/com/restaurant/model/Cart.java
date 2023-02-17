@@ -4,24 +4,30 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-import java.math.BigDecimal;
-
 @Entity
-@Table(name = "product")
-public class Product {
+@Table(name = "cart")
+public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Size(max = 45)
     @NotNull
-    @Column(name = "name", nullable = false, length = 45)
+    @Column(name = "id_products", nullable = false)
+    private Integer idProducts;
+
+    @Size(max = 255)
+    @NotNull
+    @Column(name = "name", nullable = false)
     private String name;
 
     @NotNull
-    @Column(name = "price", nullable = false, precision = 11, scale = 2)
+    @Column(name = "price", nullable = false)
     private Integer price;
+
+    @NotNull
+    @Column(name = "quantity", nullable = false)
+    private Integer quantity;
 
     public Integer getId() {
         return id;
@@ -29,6 +35,14 @@ public class Product {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getIdProducts() {
+        return idProducts;
+    }
+
+    public void setIdProducts(Integer idProducts) {
+        this.idProducts = idProducts;
     }
 
     public String getName() {
@@ -45,6 +59,14 @@ public class Product {
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
 }

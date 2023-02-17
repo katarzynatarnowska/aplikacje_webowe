@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="https://www.thymleaf.org/" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>RestaurantPage</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}" >
+
+</head>
+<body>
+
+<header class="header">
+    <a href="#" class="logo">
+
+        <img src="http://localhost:8090/images/logo.png" alt="">
+    </a>
+
+    <nav class="navbar">
+        <a href="/dashboard">Strona głowna</a>
+        <a href="/dashboard#about">o nas</a>
+        <a href="/dashboard#menu">menu</a>
+        <a href="/dashboard#contact">kontakt</a>
+
+
+    </nav>
+    <div class="container-text">
+
+    </div>
+
+    <div class="welcome">
+        <span sec:authentication="name"></span>
+        <!--    <p>Has role: <span sec:authentication="authorities"></span></p>-->
+
+    </div>
+
+    <div class="icons">
+
+
+        <a th:href="@{/logout}"><div class="fas fa-sign-out-alt" id="user-btn2"> </div></a>
+
+
+    </div>
+
+
+</header>
+
+<section class="homee" id="homee">
+
+    <div class="container">
+
+
+<section class="about" id="about">
+
+
+
+    <div class="row">
+
+
+    </div>
+</section>
+<section class="menu" id="menu">
+
+    <form action="#" th:action="@{/cartproduct}" method="post">
+    <table class="table" id="products">
+
+        <thead>
+        <tr>
+            <th scope="col">Danie</th>
+            <th scope="col">Cena</th>
+            <th scope="col">Ilość</th>
+            <th scope="col"></th>
+
+        </tr>
+
+        </thead>
+
+        <tbody>
+        <tr>
+            <td  th:text="${session.product.name}" ></td>
+            <td  th:text="${session.product.price}" ></td>
+            <td><input type="text" name="quantity" placeholder="Quantity"></td>
+            <td><button type="submit" class="btn4">Dodaj</button></td>
+
+
+        </tr>
+        </tbody>
+    </table>
+
+    </form>
+
+</section>
+
+    </div>
+</section>
+
+
+
+
+</body>
+</html>
